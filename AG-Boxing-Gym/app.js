@@ -181,3 +181,22 @@ if (isIos && !isStandalone) {
 document.getElementById('closeIosHint').addEventListener('click', () => {
     iosHint.style.display = 'none';
 });
+/* =========================================
+   LIVE SEARCH FILTER LOGIC
+   ========================================= */
+const searchInput = document.getElementById('searchInput');
+
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase(); // Kunin ang bawat letra
+        const listItems = document.querySelectorAll('#inventoryList li'); // Lahat ng gamit sa listahan
+
+        listItems.forEach(item => {
+            const text = item.innerText.toLowerCase();
+            
+            // Ternary operator: shortcut para sa simple if-else
+            // Kung match ang filter, ipakita (flex). Kung hindi, itago (none).
+            item.style.display = text.includes(filter) ? "flex" : "none";
+        });
+    });
+}

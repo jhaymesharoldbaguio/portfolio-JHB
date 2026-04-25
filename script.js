@@ -214,3 +214,29 @@ filterButtons.forEach(button => {
         });
     });
 });
+/* =========================================
+   7. DYNAMIC TAB TITLE (Optimized)
+   - Binabago ang title ng tab gamit ang random messages.
+   ========================================= */
+
+let originalTitle = document.title;
+
+// Pinagsama natin sa isang listener lang para hindi mag-conflict
+window.addEventListener("blur", () => {
+    const messages = [
+        "Don't forget me! 👀",
+        "Still here? 👋",
+        "Hire Jhaymes! 🚀",
+        "Wait, come back! ✨",
+        "Check my projects! 💻"
+    ];
+    
+    // Pumipili ng random na message mula sa listahan
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    document.title = randomMessage;
+});
+
+// Kapag bumalik ang user sa tab, ibalik ang original name
+window.addEventListener("focus", () => {
+    document.title = originalTitle;
+});
