@@ -1,0 +1,108 @@
+:root {
+    --primary: #112250; /* Royal Blue mo */
+    --accent: #E0C58F;  /* Quicksand Gold mo */
+    --bg: #F5F0E6;      /* Swan Wing background */
+}
+
+body {
+    background-color: var(--bg);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.todo-container {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+#date-today {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus { border-color: var(--accent); }
+
+#addBtn {
+    background: var(--primary);
+    color: var(--accent);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+ul { list-style: none; padding: 0; }
+
+li {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.delete-btn {
+    color: #e74c3c;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Idagdag ito sa huli ng style.css */
+.task-text {
+    flex: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Style para sa tapos na na task */
+.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+    opacity: 0.6;
+}
+
+li {
+    transition: 0.3s;
+}
+
+/* Background change pag tapos na */
+li.completed {
+    background-color: #f1f1f1;
+    border-left: 5px solid #888;
+}
