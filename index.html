@@ -1,312 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baguio Jhaymes Harold | Portfolio</title>
 
-    <!-- GOOGLE FONTS -->
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
-    <!-- FONT AWESOME -->
+    <!-- ICONS & ANIMATION -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- EXTERNAL CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="profile.png">
 </head>
-
 <body>
+    <div class="glow-bg"></div>
 
     <!-- 1. NAVIGATION BAR -->
     <nav class="navbar">
-        <div class="nav-left">
-            <button id="theme-toggle" class="theme-btn">
-                <i class="fas fa-moon"></i>
-            </button>
-            <div class="logo">
-                <span>JHB</span>
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">JH<span>B</span></div>
             </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
     </nav>
 
-    <!-- 2. HERO SECTION -->
-    <header>
-        <div class="header-container">
-            <div class="header-text">
-                <h1>Hi, I'm <span class="highlight">Baguio Jhaymes Harold</span></h1>
-                <p>BSIT Student & Aspiring Web Developer</p>
-                <!-- CV Download Link -->
-                <a href="CV_Baguio_Jhaymes.pdf" download="CV_Baguio_Jhaymes.pdf" class="btn">
-                    <i class="fas fa-file-download"></i> Download CV
-                </a>
-            </div>
-
-            <div class="header-image">
-                <div class="image-stack">
-                    <!-- Image Swap Feature: Serious to Smiling -->
-                    <img src="profile.png" alt="Professional Portrait" class="profile-img profile-main">
-                    <img src="profile-smile.png" alt="Smiling Portrait" class="profile-img profile-hover">
+    <div class="main-container">
+        <!-- 2. HERO SECTION -->
+        <header class="hero-section">
+            <div data-aos="zoom-out" data-aos-duration="1200">
+                <div class="status-container">
+                    <span class="status-tag">
+                        <span class="status-dot"></span> 
+                        Available for OJT 2027
+                    </span>
                 </div>
+                <h1 class="hero-headline">ENGINEERING <span class="highlight">SOLUTIONS</span><br>WITH TECHNICAL <span class="highlight">GRIT</span>.</h1>
+                <p class="hero-subtext">Full-Stack Developer & Mobile Workflow Specialist. Building high-performance systems purely on Android.</p>
+                <div class="hero-btns">
+                    <a href="CV_Baguio_Jhaymes.pdf" download class="btn"><i class="fas fa-file-download"></i> Download CV</a>
+                    <a href="#projects" class="btn-secondary">View Projects</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. ABOUT ME SECTION -->
+        <section id="about">
+            <h2 data-aos="fade-up">About Me</h2>
+            <div class="about-grid">
+                <!-- Workspace Image -->
+                <div class="about-main-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Workspace">
+                    <div class="image-overlay"></div>
+                </div>
+
+                <!-- Description -->
+                <div class="about-description" data-aos="fade-left">
+                    <div class="mini-intro">
+                        <img src="profile-smile.png" alt="Small Profile" class="mini-pic">
+                        <span>The Strategist</span>
+                    </div>
+                    <p>I am a graduating <strong>BSIT Student</strong> at SPCBA. My journey in tech is unique: I engineer complex full-stack systems entirely on an Android environment using Termux and Acode IDE.</p>
+                    <div class="about-values">
+                        <span class="value-tag"><i class="fas fa-microchip"></i> Resourceful</span>
+                        <span class="value-tag"><i class="fas fa-terminal"></i> Logic-Driven</span>
+                    </div>
+                </div>
+
+                <!-- Timeline & Hobbies Side-by-Side Wrapper -->
+                <div class="about-bottom-layout">
+                    <div class="education-timeline" data-aos="fade-up">
+                        <h3><i class="fas fa-user-graduate"></i> Education</h3>
+                        <div class="timeline-item current">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>BSIT</h4>
+                                <p>SPCBA (2022 - Present)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Secondary</h4>
+                                <p>Liceo De San Pedro</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beyond-code" data-aos="fade-up">
+                        <h3><i class="fas fa-fist-raised"></i> Beyond the Code</h3>
+                        <div class="hobby-card">
+                            <i class="fas fa-medal" style="color: var(--primary);"></i>
+                            <div class="hobby-info">
+                                <h4>Amateur Boxer</h4>
+                                <p>3-1 Record. Applying ring discipline to software engineering.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Info Row -->
+                <div class="about-info-grid" data-aos="fade-up">
+                    <div class="info-box">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Degree</span>
+                        <p>BSIT Student</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Location</span>
+                        <p>San Pedro, Laguna</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Status</span>
+                        <p>OJT Ready</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 4. SKILLS SECTION -->
+<section id="skills" data-aos="fade-up">
+    <h2>Technical Stack</h2>
+    <div class="skills-wrapper">
+        
+        <!-- Frontend -->
+        <div class="skill-category">
+            <div class="category-title"><i class="fas fa-code"></i> Frontend</div>
+            <div class="skills-icons">
+                <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="skill-item"><i class="fab fa-js"></i><span>JS</span></div>
             </div>
         </div>
-    </header>
 
-    <!-- 3. ABOUT ME SECTION -->
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I am a dedicated <strong>BSIT Student</strong> at San Pedro College of Business Administration, specializing in building modern web applications. My journey in tech started with a curiosity about how things work on the internet, which turned into a passion for clean code and user-centered design.</p>
-                <p>I am currently preparing for my OJT and looking for opportunities to grow as a full-stack developer.</p>
-            </div>
-
-            <!-- Quick Info Cards -->
-            <div class="about-info-grid">
-                <div class="info-box">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Degree</span>
-                    <p>BS in Information Technology</p>
-                </div>
-                <div class="info-box">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Location</span>
-                    <p>Philippines</p>
-                </div>
-                <div class="info-box">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Status</span>
-                    <p>Available for OJT</p>
-                </div>
+        <!-- Backend -->
+        <div class="skill-category">
+            <div class="category-title"><i class="fas fa-server"></i> Backend</div>
+            <div class="skills-icons">
+                <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="skill-item"><i class="fas fa-database"></i><span>Firebase</span></div>
             </div>
         </div>
-    </section>
 
-    <!-- 4. SKILLS SECTION -->
-    <section id="skills">
-        <h2>My Skills</h2>
-        <div class="skills-container">
-            <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
-            <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
-            <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-            <div class="skill-item"><i class="fas fa-mobile-alt"></i> Mobile Coding</div>
-        </div>
-    </section>
-
-    <!-- 5. PROJECTS SECTION -->
-    <section id="projects">
-        <h2>My Projects</h2>
-
-        <!-- PROJECT FILTER BUTTONS: Step 2 in Action -->
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="web">Web Dev</button>
-            <button class="filter-btn" data-filter="mobile">Mobile App</button>
-            <button class="filter-btn" data-filter="games">Game Dev</button>
+        <!-- Workflow -->
+        <div class="skill-category">
+            <div class="category-title"><i class="fas fa-terminal"></i> Workflow</div>
+            <div class="skills-icons">
+                <div class="skill-item"><i class="fas fa-terminal"></i><span>Termux</span></div>
+                <div class="skill-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
+            </div>
         </div>
 
-        <div class="projects-grid">
-
-            <!-- Project 1: Ageless Care (Category: mobile) -->
-            <div class="project-card" data-category="mobile">
-                <div class="project-img-container">
-                    <img src="agelesscarelogo.png" alt="Ageless Care App" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3>Ageless Care</h3>
-                        <span style="font-size: 0.6rem; background: #e74c3c; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">ONGOING</span>
-                    </div>
-                    <p>A mobile application designed for senior citizens of San Pedro, Laguna, focusing on health accessibility.</p>
-                    <div class="card-footer">
-                        <div>
-                            <span class="tech-tag">Mobile Dev</span>
-                            <span class="tech-tag">UI/UX</span>
-                        </div>
-                        <button class="btn-small">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2: Longbu (Category: games) -->
-            <div class="project-card" data-category="games">
-                <div class="project-img-container">
-                    <img src="longbu.jpg" alt="Longbu Horror Game" class="project-img img-top">
-                </div>
-                <div class="project-info">
-                    <h3>Longbu: 3D Horror Game</h3>
-                    <p>A thrilling 3D horror experience developed as a collaborative project. Features immersive gameplay.</p>
-                    <div class="card-footer">
-                        <div>
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">Unity</span>
-                        </div>
-                        <button class="btn-small">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3: Kaffeivin (Category: web) -->
-            <div class="project-card" data-category="web">
-                <div class="project-img-container">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="Kaffeivin Coffee Shop" class="project-img">
-                </div>
-                <div class="project-info">
-                    <h3>Kaffeivin Coffee Shop</h3>
-                    <p>A full-stack web application for a coffee shop featuring a product menu and MySQL integration.</p>
-                    <div class="card-footer">
-                        <div>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <button class="btn-small">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4: Pet Care Center (Category: web) -->
-            <div class="project-card" data-category="web">
-                <div class="project-img-container">
-                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500" alt="Pet Store Project" class="project-img">
-                </div>
-                <div class="project-info">
-                    <h3>Pet Care Center</h3>
-                    <p>A user-friendly website designed for pet services and supplies. Focused on clean UI design.</p>
-                    <div class="card-footer">
-                        <div>
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                        </div>
-                        <button class="btn-small">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5: Smart To-Do List (Category: web) -->
-            <div class="project-card" data-category="web">
-                <div class="project-img-container">
-                    <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=500" alt="To-Do App Preview" class="project-img">
-                </div>
-                <div class="project-info">
-                    <h3>Smart To-Do List</h3>
-                    <p>A productivity app that helps users manage tasks with local storage functionality.</p>
-                    <div class="card-footer">
-                        <div>
-                            <span class="tech-tag">JS</span>
-                            <span class="tech-tag">HTML</span>
-                        </div>
-                        <button class="btn-small">Details</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 6: AG Boxing Gym -->
-<div class="project-card" data-category="web">
-    <div class="project-img-container">
-        <!-- Gym/Boxing themed image -->
-        <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600" alt="AG Boxing Gym" class="project-img">
     </div>
-    <div class="project-info">
-        <h3>AG Boxing Gym</h3>
-        <p>A management system for gym inventory featuring <strong>Firebase Real-time Database</strong> integration for seamless data tracking.</p>
-        <div class="card-footer">
-            <div>
-                <span class="tech-tag">Firebase</span>
-                <span class="tech-tag">JS</span>
+</section>
+ 
+
+        <!-- 5. PROJECTS SECTION -->
+        <section id="projects">
+            <h2 data-aos="fade-up" style="text-align: center; margin-bottom: 20px;">Project Archive</h2>
+            <div class="filter-container" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="games">Games</button>
             </div>
-            <button class="btn-small">Details</button>
-        </div>
-    </div>
-</div>
 
-<!-- Project 7: INTELLIFIT (FEATURED CAPSTONE) -->
-<div class="project-card" data-category="web">
-    <div class="project-img-container">
-        <!-- Main Dashboard Screenshot -->
-        <img src="intellifit-main.jpg" alt="Intellifit Capstone Web Based Prototype" class="project-img img-top">
-    </div>
-    <div class="project-info">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3>INTELLIFIT</h3>
-            <span style="font-size: 0.6rem; background: #f39c12; color: #112250; padding: 2px 6px; border-radius: 4px; font-weight: bold;">CAPSTONE Web Based Prototype</span>
-        </div>
-        <p>AI-Powered Recommendation System for SPCBA Varsity Student-Athletes. Engineered entirely on Android.</p>
-        <div class="card-footer">
-            <div>
-                <span class="tech-tag">Python/Flask</span>
-                <span class="tech-tag">Tailwind</span>
-                <span class="tech-tag">Firebase</span>
+            <div class="bento-grid">
+                <!-- 1. AGELESS CARE (FEATURED) -->
+                <div class="bento-item featured project-card" data-category="mobile" data-aos="zoom-in">
+                    <div class="bento-tag">Primary Capstone</div>
+                    <div class="bento-content">
+                        <h3>AGELESS CARE</h3>
+                        <p>Java Native Healthcare App for Seniors.</p>
+                        <button class="btn-small">Details</button>
+                    </div>
+                    <img src="agelesscarelogo.png" class="bento-bg">
+                </div>
+
+                <!-- 2. INTELLIFIT (WIDE) -->
+                <div class="bento-item wide project-card" data-category="web" data-aos="fade-up">
+                    <div class="bento-tag">AI Project</div>
+                    <div class="bento-content">
+                        <h3>INTELLIFIT</h3>
+                        <button class="btn-small">Details</button>
+                    </div>
+                    <img src="intellifit-main.jpg" class="bento-bg">
+                </div>
+
+                <!-- 3. AG BOXING GYM (TALL) -->
+                <div class="bento-item tall project-card" data-category="web" data-aos="fade-up">
+                    <div class="bento-tag">Firebase System</div>
+                    <div class="bento-content">
+                        <h3>AG BOXING GYM</h3>
+                        <button class="btn-small">Details</button>
+                    </div>
+                </div>
+
+                <!-- 4. LONGBU -->
+                <div class="bento-item project-card" data-category="games" data-aos="fade-up">
+                    <div class="bento-content">
+                        <h3>LONGBU</h3>
+                        <button class="btn-small">Details</button>
+                    </div>
+                    <img src="longbu.jpg" class="bento-bg">
+                </div>
+
+                <!-- 5. KAFFEIVIN -->
+                <div class="bento-item project-card" data-category="web" data-aos="fade-up">
+                    <div class="bento-content">
+                        <h3>KAFFEIVIN</h3>
+                        <button class="btn-small">Details</button>
+                    </div>
+                </div>
             </div>
-            <button class="btn-small">Details</button>
-        </div>
-    </div>
+        </section>
 
-            
-        </div>
-    </section>
-
-    <!-- 6. CONTACT SECTION: Combined with Formspree -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Interested in working together? Send me a direct message!</p>
-        <p><strong>Email:</strong> 23100182@spcba.edu.ph</p>
-
-        <!-- Formspree Integration -->
-        <form action="https://formspree.io/f/maqaplaa" method="POST" class="contact-form">
-            <div class="form-group">
+        <!-- 6. CONTACT SECTION -->
+        <section id="contact" data-aos="fade-up">
+            <h2>Contact Me</h2>
+            <form action="https://formspree.io/f/maqaplaa" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
                 <input type="email" name="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-        </form>
-    </section>
+                <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+    </div>
 
-    <!-- THE MODAL OVERLAY -->
+    <!-- MODAL OVERLAY -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2 id="modalTitle">Project Title</h2>
-            <div class="modal-body">
-                <!-- Data will be injected here by script.js -->
-            </div>
+            <h2 id="modalTitle">Title</h2>
+            <div class="modal-body"></div>
         </div>
     </div>
 
-    <!-- 7. FOOTER -->
-<footer>
-    <p>© 2026 Baguio Jhaymes Harold | BSIT Student</p>
-    <div class="social-links">
-        <!-- Palitan ang mga links sa loob ng href="" -->
-        <a href="https://www.facebook.com/share/1BF6a258YF/" target="_blank" title="Facebook">
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://github.com/jhaymesharoldbaguio" target="_blank" title="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/YOUR_USERNAME" target="_blank" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-        </a>
-    </div>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Baguio Jhaymes Harold | BSIT Student</p>
+    </footer>
 
-    <!-- EXTERNAL JAVASCRIPT -->
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
     <script src="script.js"></script>
 </body>
-
 </html>
