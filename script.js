@@ -146,3 +146,33 @@ document.querySelectorAll('.filter-btn').forEach(button => {
 });
 
 AOS.init({ duration: 1000, once: true });
+
+/* =========================================
+   8. SMART TYPEWRITER EFFECT (WITH AUTO-HIDE CURSOR)
+   ========================================= */
+const typewriterElement = document.getElementById("typewriter");
+const htmlContent = 'ENGINEERING <span class="highlight">SOLUTIONS</span><br>WITH TECHNICAL <span class="highlight">GRIT</span>.';
+let charIndex = 0;
+
+function type() {
+    if (charIndex < htmlContent.length) {
+        // Idagdag ang class na "typing" para lumabas ang cursor
+        typewriterElement.classList.add("typing");
+
+        if (htmlContent.charAt(charIndex) === "<") {
+            charIndex = htmlContent.indexOf(">", charIndex) + 1;
+        } else {
+            charIndex++;
+        }
+        
+        typewriterElement.innerHTML = htmlContent.slice(0, charIndex);
+        setTimeout(type, 70);
+    } else {
+        // ETO ANG MAGIC: Mawawala ang cursor pagtapos na ang typing
+        typewriterElement.classList.remove("typing");
+    }
+}
+
+window.addEventListener("load", () => {
+    setTimeout(type, 500);
+});

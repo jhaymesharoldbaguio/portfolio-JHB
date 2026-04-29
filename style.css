@@ -72,6 +72,28 @@ p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 15px; }
 /* ============================================================
    4. HERO SECTION (Typography Focus)
    ============================================================ */
+   
+/* =========================================
+   TYPEWRITER CURSOR (WITH AUTO-HIDE)
+   ========================================= */
+#typewriter {
+    min-height: 2.2em;
+    display: inline-block;
+}
+
+/* Lalabas lang ang cursor kapag may class na "typing" */
+#typewriter.typing::after {
+    content: '|';
+    color: var(--primary);
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+   
 .hero-section { padding: 100px 20px; text-align: center; }
 
 .status-tag {
