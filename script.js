@@ -54,9 +54,8 @@ const projectData = {
         features: ["Responsive Design", "Product Gallery", "Modern UI"]
     },
     "SMART TO-DO": {
-      isCaseStudy: true,
+    
         desc: "Productivity app with local persistence using JavaScript.",
-        mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg"],
         features: ["Local Storage", "Task Toggle", "Mobile Optimized"]
     }
 };
