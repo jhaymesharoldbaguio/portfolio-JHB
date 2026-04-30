@@ -9,7 +9,7 @@ window.addEventListener("blur", () => {
 window.addEventListener("focus", () => { document.title = originalTitle; });
 
 /* ============================================================
-   2. MODAL LOGIC & DATA
+   2. PROJECT DATA (Database)
    ============================================================ */
 const projectData = {
     "AGELESS CARE": {
@@ -31,82 +31,97 @@ const projectData = {
         challenge: "Engineered entirely on Android via Termux."
     },
     "AG BOXING GYM": {
-        isCaseStudy: true, // ETO ANG KAILANGAN para lumabas ang gallery
+        isCaseStudy: true,
         tagline: "Real-time Inventory Management for Modern Gyms",
-        mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg"],
-        problem: "Manual tracking of gym equipment often leads to lost items and unmonitored stocks.",
-        solution: "A cloud-based inventory system using Firebase to provide real-time updates and secure data management.",
+        mockupImages: ["agMockup.jpg", "agMockup2.jpg"], // MOCKUPS PRESERVED
+        problem: "Manual tracking of gym equipment often leads to lost items.",
+        solution: "A cloud-based inventory system using Firebase for real-time updates.",
         features: ["Real-time Sync", "Inventory CRUD", "Equipment Stock Management"],
-        challenge: "Integrating Firebase required handling real-time data listeners to ensure stocks are updated across all devices instantly."
+        challenge: "Integrating Firebase required handling real-time data listeners."
     },
     "LONGBU": {
-      isCaseStudy: true,
-        desc: "A collaborative 3D horror game project developed in Unity.",
-        mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg"],
-        features: ["3D Environment", "C# Scripting", "Atmospheric Lighting"]
+        isCaseStudy: true,
+        tagline: "Immersive 3D Horror Environment in Unity",
+        mockupImages: ["longbuMockup.jpg", "longbuMockup2.jpg"], // MOCKUPS PRESERVED
+        problem: "Creating high-tension atmosphere in a mobile-optimized 3D environment.",
+        solution: "Collaborative 3D horror game developed in Unity with optimized lighting.",
+        features: ["3D Environment", "C# Scripting", "Unity Engine"],
+        challenge: "Balancing high-quality lighting with mobile performance."
     },
     "KAFFEIVIN": {
-        desc: "Coffee Shop management system built with PHP and MySQL.",
+        desc: "A management system built with PHP and MySQL to handle daily coffee shop operations.",
         features: ["Order Logging", "Inventory Tracking", "Admin Dashboard"]
     },
     "PET CARE": {
-        desc: "E-commerce responsive UI for pet services and products.",
+        desc: "A responsive website dedicated to pet services and e-commerce presentation.",
         features: ["Responsive Design", "Product Gallery", "Modern UI"]
     },
     "SMART TO-DO": {
-    
-        desc: "Productivity app with local persistence using JavaScript.",
+        desc: "A web app that saves your tasks locally in the browser using JavaScript and LocalStorage.",
         features: ["Local Storage", "Task Toggle", "Mobile Optimized"]
     }
 };
 
+/* ============================================================
+   3. MODAL LOGIC (Taga-bukas at Taga-fill)
+   ============================================================ */
 const modal = document.getElementById("projectModal");
 const closeBtn = document.querySelector(".close-button");
 
-// Taga-bukas ng Modal
 document.addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('btn-small')) {
-        const projectCard = e.target.closest('.project-card');
-        const title = projectCard.querySelector('h3').innerText.toUpperCase().trim();
+    const clickedBtn = e.target.closest('.btn-small');
+    if (!clickedBtn) return;
 
-        if (projectData[title]) {
-            const data = projectData[title];
-            document.getElementById("modalTitle").innerText = title;
-            const modalBody = document.querySelector(".modal-body");
-            
-            if (data.isCaseStudy) {
-                let imagesHTML = "";
-                data.mockupImages.forEach(imgSrc => {
-                    imagesHTML += `<div class="modal-mockup"><img src="${imgSrc}" class="mockup-img"></div>`;
-                });
-                modalBody.innerHTML = `
-                    <p class="case-tagline"><em>"${data.tagline}"</em></p>
-                    <div class="mockup-gallery">${imagesHTML}</div>
-                    <div class="case-section"><h4>The Problem</h4><p>${data.problem}</p></div>
-                    <div class="case-section"><h4>Our Solution</h4><p>${data.solution}</p></div>
-                    <h4>Key Features:</h4><ul id="modalFeatures"></ul>
-                `;
-            } else {
-                modalBody.innerHTML = `
-                    <p id="modalDescription">${data.desc}</p>
-                    <h4>Key Features:</h4><ul id="modalFeatures"></ul>
-                `;
-            }
+    const projectCard = clickedBtn.closest('.project-card');
+    
+    let title = projectCard.querySelector('h3').innerText.toUpperCase().trim();
+    title = title.replace('ONGOING', '').trim(); 
 
-            const featuresList = document.getElementById("modalFeatures");
-            data.features.forEach(feat => {
-                let li = document.createElement("li");
-                li.innerText = feat;
-                featuresList.appendChild(li);
+    if (projectData[title]) {
+        const data = projectData[title];
+        document.getElementById("modalTitle").innerText = title;
+        const modalBody = document.querySelector(".modal-body");
+        
+        if (data.isCaseStudy) {
+            let imagesHTML = "";
+            data.mockupImages.forEach(imgSrc => {
+                imagesHTML += `<div class="modal-mockup"><img src="${imgSrc}" class="mockup-img"></div>`;
             });
-
-            // Special Buttons
-            if (title === "SMART TO-DO") addModalButton(featuresList, "SmartToDo/index.html", 'Try the App');
-            if (title === "LONGBU") addModalButton(featuresList, "https://setty-69.itch.io/longboo", 'Play on Itch.io');
-            if (title === "AG BOXING GYM") addModalButton(featuresList, "AG-Boxing-Gym/index.html", 'Open Gym App');
-
-            modal.style.display = "block";
+            modalBody.innerHTML = `
+                <p class="case-tagline" style="color:var(--primary); font-weight:bold; text-align:center; margin-bottom:20px;"><em>"${data.tagline}"</em></p>
+                <div class="mockup-gallery">${imagesHTML}</div>
+                <div class="case-section" style="background:rgba(255,255,255,0.03); padding:20px; border-radius:15px; border-left:4px solid var(--primary); margin-bottom:20px;">
+                    <h4 style="color:var(--primary); margin-bottom:10px;">The Problem</h4>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">${data.problem}</p>
+                </div>
+                <div class="case-section" style="background:rgba(255,255,255,0.03); padding:20px; border-radius:15px; border-left:4px solid var(--primary); margin-bottom:20px;">
+                    <h4 style="color:var(--primary); margin-bottom:10px;">Our Solution</h4>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">${data.solution}</p>
+                </div>
+                ${data.challenge ? `<div class="case-section" style="background:rgba(255,255,255,0.03); padding:20px; border-radius:15px; border-left:4px solid var(--primary); margin-bottom:20px;"><h4 style="color:var(--primary); margin-bottom:10px;">Engineering Challenge</h4><p style="color:var(--text-secondary); font-size:0.9rem;">${data.challenge}</p></div>` : ''}
+                <h4>Key Features:</h4><ul id="modalFeatures" style="padding-left:20px; margin-top:10px; color:var(--text-secondary);"></ul>
+            `;
+        } else {
+            modalBody.innerHTML = `
+                <p id="modalDescription" style="margin-bottom:20px; color:var(--text-secondary);">${data.desc}</p>
+                <h4>Key Features:</h4><ul id="modalFeatures" style="padding-left:20px; margin-top:10px; color:var(--text-secondary);"></ul>
+            `;
         }
+
+        const featuresList = document.getElementById("modalFeatures");
+        data.features.forEach(feat => {
+            let li = document.createElement("li");
+            li.innerText = feat;
+            li.style.marginBottom = "8px";
+            featuresList.appendChild(li);
+        });
+
+        // Special Actions para sa specific apps
+        if (title === "SMART TO-DO") addModalButton(featuresList, "SmartToDo/index.html", 'Try the App');
+        if (title === "LONGBU") addModalButton(featuresList, "https://setty-69.itch.io/longboo", 'Play on Itch.io');
+        if (title === "AG BOXING GYM") addModalButton(featuresList, "AG-Boxing-Gym/index.html", 'Open Gym App');
+
+        modal.style.display = "block";
     }
 });
 
@@ -127,51 +142,51 @@ if (closeBtn) closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
 /* ============================================================
-   3. PROJECT FILTER & SMOOTH SCROLL & AOS
+   4. TYPEWRITER EFFECT
    ============================================================ */
+const typewriterElement = document.getElementById("typewriter");
+const htmlContent = 'ENGINEERING <span class="highlight">SOLUTIONS</span><br>WITH TECHNICAL <span class="highlight">GRIT</span>.';
+let charIndex = 0;
+
+function type() {
+    if (typewriterElement && charIndex < htmlContent.length) {
+        typewriterElement.classList.add("typing");
+        if (htmlContent.charAt(charIndex) === "<") {
+            charIndex = htmlContent.indexOf(">", charIndex) + 1;
+        } else {
+            charIndex++;
+        }
+        typewriterElement.innerHTML = htmlContent.slice(0, charIndex);
+        setTimeout(type, 70);
+    } else {
+        typewriterElement.classList.remove("typing");
+    }
+}
+
+/* ============================================================
+   5. FILTER & SMOOTH SCROLL INIT
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(type, 500);
+    if(typeof AOS !== 'undefined') AOS.init({ duration: 1000, once: true });
+});
+
 document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         const filterValue = button.getAttribute('data-filter');
         document.querySelectorAll('.project-card').forEach(card => {
-            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
+            card.style.display = (filterValue === 'all' || card.getAttribute('data-category') === filterValue) ? 'flex' : 'none';
         });
     });
 });
 
-AOS.init({ duration: 1000, once: true });
-
-/* =========================================
-   8. SMART TYPEWRITER EFFECT (WITH AUTO-HIDE CURSOR)
-   ========================================= */
-const typewriterElement = document.getElementById("typewriter");
-const htmlContent = 'ENGINEERING <span class="highlight">SOLUTIONS</span><br>WITH TECHNICAL <span class="highlight">GRIT</span>.';
-let charIndex = 0;
-
-function type() {
-    if (charIndex < htmlContent.length) {
-        // Idagdag ang class na "typing" para lumabas ang cursor
-        typewriterElement.classList.add("typing");
-
-        if (htmlContent.charAt(charIndex) === "<") {
-            charIndex = htmlContent.indexOf(">", charIndex) + 1;
-        } else {
-            charIndex++;
-        }
-        
-        typewriterElement.innerHTML = htmlContent.slice(0, charIndex);
-        setTimeout(type, 70);
-    } else {
-        // ETO ANG MAGIC: Mawawala ang cursor pagtapos na ang typing
-        typewriterElement.classList.remove("typing");
-    }
-}
-
-window.addEventListener("load", () => {
-    setTimeout(type, 500);
+document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
 });
