@@ -15,7 +15,7 @@ const projectData = {
     "AGELESS CARE": {
         isCaseStudy: true,
         tagline: "Native Android Engineering for Senior Citizen Welfare",
-        mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg"], 
+        mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg","ageless-mockup4.jpg","ageless-mockup5.jpg","ageless-mockup6.jpg"], 
         problem: "Existing healthcare apps are often too complex for senior citizens.",
         solution: "A high-performance native Android application using Java and Firebase.",
         features: ["Native Java", "Firebase Auth", "SOS Integration", "High-Contrast UI"],
