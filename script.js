@@ -12,7 +12,7 @@ window.addEventListener("focus", () => { document.title = originalTitle; });
    2. PROJECT DATA (Database)
    ============================================================ */
 const projectData = {
-    "AGELESS CARE": {
+    "AGELESS CARE 2.0": {
         isCaseStudy: true,
         tagline: "Native Android Engineering for Senior Citizen Welfare",
         mockupImages: ["ageless-mockup1.jpg", "ageless-mockup2.jpg", "ageless-mockup3.jpg","ageless-mockup4.jpg","ageless-mockup5.jpg","ageless-mockup6.jpg"], 
