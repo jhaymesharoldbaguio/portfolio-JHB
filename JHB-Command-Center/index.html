@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JHB | Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-overlay"></div>
+
+    <div class="dashboard">
+        <div class="back-nav" style="margin-bottom: 20px;">
+            <a href="../index.html" style="text-decoration:none; color:var(--text-dim); font-size:0.8rem;">
+                <i class="fas fa-arrow-left"></i> Back to Main Systems
+            </a>
+        </div>
+
+        <!-- COUNTDOWN TIMER -->
+        <header class="header">
+            <div class="system-status">
+                <span class="dot pulse"></span> SYSTEM ACTIVE // USER: JH_BAGUIO
+            </div>
+            <div class="timer-container">
+                <p>DEPARTURE FOR OJT IN:</p>
+                <h1 id="countdown">00:00:00</h1>
+            </div>
+        </header>
+
+        <!-- INPUT CONTROL -->
+        <section class="control-panel">
+            <div class="input-group">
+                <input type="text" id="goalInput" placeholder="Enter Daily Objective...">
+                <select id="categorySelect">
+                    <option value="capstone">Capstone 2.0</option>
+                    <option value="ojt">OJT (Tiger Global)</option>
+                    <option value="fitness">Discipline</option>
+                    <option value="home">Night Protocol</option>
+                </select>
+                <button id="addBtn">EXECUTE</button>
+            </div>
+        </section>
+
+        <!-- ACTIVE DATA GRID -->
+        <div class="goals-grid" id="goalsList">
+            <!-- Active tasks will load here -->
+        </div>
+
+        <!-- BAGONG SECTION: ACCOMPLISHED OPERATIONS -->
+        <section class="history-section" style="margin-top: 60px;">
+            <div class="section-header-row" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; margin-bottom: 20px;">
+                <h3 style="font-size: 0.9rem; color: var(--text-dim); letter-spacing: 2px;"><i class="fas fa-check-double"></i> Accomplished</h3>
+                <button id="clearAllBtn" class="btn-purge">PURGE HISTORY</button>
+            </div>
+            <div class="goals-grid" id="completedList">
+                <!-- Finished tasks will load here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

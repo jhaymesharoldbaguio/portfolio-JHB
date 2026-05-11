@@ -1,0 +1,113 @@
+/* ============================================================
+   JHB COMMAND CENTER - MASTER STYLE
+   ============================================================ */
+:root {
+    --bg: #0D1111;
+    --card: #161D1D;
+    --neon: #00FF95;
+    --text-main: #F0F5F2;
+    --text-dim: #819595;
+    --glass-border: rgba(0, 255, 149, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background-color: var(--bg); color: var(--text-main); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+.glow-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, rgba(0, 255, 149, 0.15), transparent 50%); z-index: -1; pointer-events: none; }
+.dashboard { max-width: 850px; margin: 0 auto; padding: 60px 20px; }
+
+/* HEADER & TIMER */
+.header { text-align: center; margin-bottom: 60px; }
+.system-status { font-family: monospace; color: var(--neon); font-size: 10px; letter-spacing: 3px; margin-bottom: 15px; text-transform: uppercase; }
+#countdown { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 5rem; color: var(--neon); letter-spacing: -2px; text-shadow: 0 0 20px rgba(0, 255, 149, 0.3); }
+.timer-container p { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 2px; }
+
+/* CONTROL PANEL */
+.input-group { display: flex; flex-wrap: wrap; gap: 12px; background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px solid var(--glass-border); color: white; padding: 15px; border-radius: 12px; outline: none; }
+#addBtn { background: var(--neon); color: #000; border: none; padding: 0 30px; border-radius: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+#addBtn:hover { background: #ffffff; transform: scale(1.05); }
+
+/* BATTLE PLAN ITEMS */
+.goals-grid { display: flex; flex-direction: column; gap: 15px; }
+.goal-item { background: var(--card); padding: 20px 30px; border-radius: 20px; border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.goal-item p { font-weight: 600; font-size: 1.1rem; margin: 5px 0; }
+.goal-item small { color: var(--neon); font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
+
+/* CATEGORY BORDER COLORS */
+.cat-capstone { border-left: 5px solid #00FF95 !important; }
+.cat-ojt { border-left: 5px solid #38b2ac !important; }
+.cat-fitness { border-left: 5px solid #f39c12 !important; }
+.cat-home { border-left: 5px solid #a0aec0 !important; }
+
+/* ACCOMPLISHED STATE */
+.goal-item.done { opacity: 0.4; border-left: 5px solid #444 !important; filter: grayscale(1); }
+.goal-item.done p { text-decoration: line-through; color: var(--text-dim); }
+
+/* BUTTONS */
+.action-btn { background: rgba(0, 255, 149, 0.1); border: 1px solid var(--neon); color: var(--neon); padding: 10px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+.action-btn:hover { background: var(--neon); color: black; }
+
+.btn-purge { background: transparent; border: 1px solid #e74c3c; color: #e74c3c; padding: 5px 15px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-purge:hover { background: #e74c3c; color: white; box-shadow: 0 0 15px rgba(231, 76, 60, 0.4); }
+
+/* ANIMATIONS */
+@keyframes pulse-dot { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(3); opacity: 0; } }
+@keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.dot.pulse { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; display: inline-block; animation: pulse-dot 1.5s infinite; margin-right: 5px; }
+
+@media (max-width: 600px) {
+    #countdown { font-size: 3.5rem; }
+    .input-group { padding: 15px; }
+    .goal-item { padding: 15px 20px; }
+}
+
+/* =========================================
+   HOVER EFFECTS & NEW ACTIONS
+   ========================================= */
+
+.goal-item {
+    cursor: default;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ETO ANG HOVER EFFECT: Mag-go-glow ang border at aangat ng konti */
+.goal-item:hover {
+    transform: translateX(10px) scale(1.02);
+    background: rgba(0, 255, 149, 0.03);
+    border-color: var(--neon);
+    box-shadow: 0 0 20px rgba(0, 255, 149, 0.1);
+}
+
+/* Action Buttons Container */
+.goal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Trash Button Style (Red) */
+.btn-trash {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-trash:hover {
+    background: #e74c3c;
+    color: white;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
+    transform: scale(1.1);
+}
+
+/* Check/Undo Button Style (Green - existing) */
+.action-btn {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
