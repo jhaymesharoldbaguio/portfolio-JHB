@@ -29,7 +29,12 @@ input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px soli
 #addBtn:hover { background: #ffffff; transform: scale(1.05); }
 
 /* BATTLE PLAN ITEMS */
-.goals-grid { display: flex; flex-direction: column; gap: 15px; }
+.goals-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; /* Space sa pagitan ng bawat card */
+    margin-top: 40px; /* Space sa taas ng unang card */
+}
 .goal-item { background: var(--card); padding: 20px 30px; border-radius: 20px; border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .goal-item p { font-weight: 600; font-size: 1.1rem; margin: 5px 0; }
 .goal-item small { color: var(--neon); font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
@@ -48,7 +53,17 @@ input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px soli
 .action-btn { background: rgba(0, 255, 149, 0.1); border: 1px solid var(--neon); color: var(--neon); padding: 10px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
 .action-btn:hover { background: var(--neon); color: black; }
 
-.btn-purge { background: transparent; border: 1px solid #e74c3c; color: #e74c3c; padding: 5px 15px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-purge {
+    background: transparent;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+}
 .btn-purge:hover { background: #e74c3c; color: white; box-shadow: 0 0 15px rgba(231, 76, 60, 0.4); }
 
 /* ANIMATIONS */
@@ -111,3 +126,37 @@ input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px soli
     align-items: center;
     justify-content: center;
 }
+
+.control-panel {
+    margin-bottom: 30px;
+}
+
+/* 3. Siguraduhin na ang accomplished section ay may sapat na gap */
+.history-section {
+    margin-top: 80px;
+    padding-top: 20px;
+}
+
+/* 4. Action buttons spacing */
+.goal-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Idagdag ito sa parteng 'CATEGORY BORDER COLORS' sa style.css */
+
+/* Morning - Cyan (Fresh Start) */
+.cat-morning { border-left: 5px solid #00d9ff !important; }
+
+/* Capstone - Green (Development) */
+.cat-capstone { border-left: 5px solid #00FF95 !important; }
+
+/* OJT - Blue (Corporate) */
+.cat-ojt { border-left: 5px solid #38b2ac !important; }
+
+/* Fitness - Orange (Energy) */
+.cat-fitness { border-left: 5px solid #f39c12 !important; }
+
+/* Home - Silver (Logistics) */
+.cat-home { border-left: 5px solid #a0aec0 !important; }

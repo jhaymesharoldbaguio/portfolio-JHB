@@ -59,6 +59,15 @@ const projectData = {
     "SMART TO-DO": {
         desc: "A web app that saves your tasks locally in the browser using JavaScript and LocalStorage.",
         features: ["Local Storage", "Task Toggle", "Mobile Optimized"]
+    },
+    "COMMAND CENTER": {
+        isCaseStudy: true,
+        tagline: "Strategic Productivity Dashboard for OJT & Capstone",
+        mockupImages: ["https://images.unsplash.com/photo-1510511459019-5dee667ff58b?w=600"], // Palitan mo ng actual screenshots ng Command Center mo
+        problem: "Managing OJT hours at Tiger Global while simultaneously finishing a Native Android Capstone can be overwhelming without a structured timeline.",
+        solution: "A web-based 'Command Center' with a real-time OJT departure countdown and Firebase-synced daily objectives to ensure 100% discipline.",
+        features: ["10:30 AM Departure Timer", "Firebase Real-time Sync", "Multi-device Persistence", "Night Protocol Management"],
+        challenge: "Synchronizing data across mobile and desktop environments to maintain a consistent 'Battle Plan' throughout the day."
     }
 };
 
@@ -120,7 +129,9 @@ document.addEventListener('click', function(e) {
         if (title === "SMART TO-DO") addModalButton(featuresList, "SmartToDo/index.html", 'Try the App');
         if (title === "LONGBU") addModalButton(featuresList, "https://setty-69.itch.io/longboo", 'Play on Itch.io');
         if (title === "AG BOXING GYM") addModalButton(featuresList, "AG-Boxing-Gym/index.html", 'Open Gym App');
-
+if (title === "COMMAND CENTER") {
+    addModalButton(featuresList, "JHB-Command-Center/index.html", 'Execute Dashboard');
+}
         modal.style.display = "block";
     }
 });

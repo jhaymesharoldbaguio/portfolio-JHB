@@ -8,10 +8,27 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// 2. Countdown Logic (10:30 AM Departure)
+/* =========================================
+   NEW: OFFLINE PERSISTENCE ENGINE
+   - Pinapagana ang app kahit walang internet.
+   - I-se-save ang data sa browser cache.
+   ========================================= */
+db.enablePersistence()
+  .catch((err) => {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled in one tab at a time.
+          console.warn('Persistence failed: Multiple tabs open.');
+      } else if (err.code == 'unimplemented') {
+          // The current browser doesn't support all of the features required to enable persistence
+          console.warn('Persistence is not available in this browser.');
+      }
+  });
+
+// 2. Countdown Logic (Departure 10:30 AM)
 function startTimer() {
     setInterval(() => {
         const now = new Date();
@@ -27,25 +44,41 @@ function startTimer() {
     }, 1000);
 }
 
-// 3. Add Goal with "completed" status
+// 3. Add Goal with Instant Clear Logic
 const addBtn = document.getElementById('addBtn');
 const goalInput = document.getElementById('goalInput');
 
 addBtn.addEventListener('click', async () => {
     const objective = goalInput.value.trim();
     const category = document.getElementById('categorySelect').value;
+
     if (objective) {
-        await db.collection("battle_plan").add({
-            text: objective,
-            cat: category,
-            completed: false, // New field for archiving
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        goalInput.value = "";
+        // INSTANT UI FEEDBACK:
+        // Burahin agad ang text sa screen para sa mabilis na feel
+        goalInput.value = ""; 
+        goalInput.focus(); 
+
+        try {
+            // I-push sa Cloud (o sa local cache kung offline)
+            await db.collection("battle_plan").add({
+                text: objective,
+                cat: category,
+                completed: false,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            console.log("System: Objective Deployed.");
+        } catch (error) {
+            console.error("Critical Error: ", error);
+            // Revert text kung may matinding error
+            goalInput.value = objective; 
+            alert("System Error: Failed to sync.");
+        }
+    } else {
+        alert("Please enter an objective first, Champ!");
     }
 });
 
-// 4. Read and Categorize (Active vs Accomplished)
+// 4. Read and Categorize (Real-time Snapshot)
 db.collection("battle_plan").orderBy("timestamp", "desc")
     .onSnapshot((snapshot) => {
         const goalsList = document.getElementById('goalsList');
@@ -66,13 +99,10 @@ db.collection("battle_plan").orderBy("timestamp", "desc")
                         <p>${data.text}</p>
                     </div>
                     <div class="goal-actions">
-                        <!-- TRASH BUTTON (Para sa aksidente) -->
                         <button onclick="deleteObjective('${doc.id}')" class="btn-trash" title="Delete">
                             <i class="fas fa-trash-alt"></i>
                         </button>
-                        
-                        <!-- CHECK/UNDO BUTTON -->
-                        <button onclick="toggleGoal('${doc.id}', ${isDone})" class="action-btn" title="${isDone ? 'Undo' : 'Complete'}">
+                        <button onclick="toggleGoal('${doc.id}', ${isDone})" class="action-btn">
                             <i class="fas ${isDone ? 'fa-undo' : 'fa-check'}"></i>
                         </button>
                     </div>
@@ -87,22 +117,41 @@ db.collection("battle_plan").orderBy("timestamp", "desc")
         });
     });
 
-// 5. Toggle Status: Marks as Done or Reverts to Active
+// 5. Toggle Status (Done / Active)
 window.toggleGoal = async (id, currentStatus) => {
     await db.collection("battle_plan").doc(id).update({
         completed: !currentStatus
     });
 };
 
+// 6. Delete Specific Objective
 window.deleteObjective = async (id) => {
     if (confirm("Remove this objective from the system?")) {
-        try {
-            await db.collection("battle_plan").doc(id).delete();
-            console.log("Entry purged.");
-        } catch (error) {
-            console.error("Error purging entry: ", error);
-        }
+        await db.collection("battle_plan").doc(id).delete();
     }
 };
+
+// 7. PURGE HISTORY LOGIC
+const clearBtn = document.getElementById('clearAllBtn');
+if (clearBtn) {
+    clearBtn.addEventListener('click', async () => {
+        if (confirm("System Alert: Purge all accomplished operations? This cannot be undone.")) {
+            try {
+                const snapshot = await db.collection("battle_plan").where("completed", "==", true).get();
+                if (snapshot.empty) return;
+
+                const batch = db.batch();
+                snapshot.forEach((doc) => {
+                    batch.delete(doc.ref);
+                });
+
+                await batch.commit();
+                console.log("History Purged.");
+            } catch (error) {
+                console.error("Error purging history: ", error);
+            }
+        }
+    });
+}
 
 startTimer();
