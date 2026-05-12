@@ -12,52 +12,100 @@
     <div class="glow-overlay"></div>
 
     <div class="dashboard">
+        <!-- Back Navigation -->
         <div class="back-nav" style="margin-bottom: 20px;">
             <a href="../index.html" style="text-decoration:none; color:var(--text-dim); font-size:0.8rem;">
                 <i class="fas fa-arrow-left"></i> Back to Main Systems
             </a>
         </div>
 
-        <!-- COUNTDOWN TIMER -->
+        <!-- HEADER: TIMER & PROGRESS -->
         <header class="header">
             <div class="system-status">
                 <span class="dot pulse"></span> SYSTEM ACTIVE // USER: JH_BAGUIO
             </div>
+            
             <div class="timer-container">
                 <p>DEPARTURE FOR OJT IN:</p>
                 <h1 id="countdown">00:00:00</h1>
+                
+                <!-- OJT PROGRESS TRACKER (Cleaned Version) -->
+                <div class="progress-wrapper">
+                    <div class="progress-info">
+                        <span>OJT PROGRESS (500 HOURS)</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <small id="hour-count">0 / 500 HOURS RENDERED</small>
+                    
+                    <button id="clockOutBtn" class="btn-mini" style="margin-top: 15px; font-size: 10px;">
+                        <i class="fas fa-clock"></i> LOG 8 HOURS TODAY
+                    </button>
+                </div>
             </div>
         </header>
 
-        <!-- INPUT CONTROL -->
+        <!-- INPUT CONTROL PANEL -->
         <section class="control-panel">
             <div class="input-group">
                 <input type="text" id="goalInput" placeholder="Enter Daily Objective...">
-                <!-- Hanapin ang <select> at palitan ng ganito -->
-            <select id="categorySelect">
-                <option value="morning">Morning Protocol</option> <!-- BAGONG DAGDAG -->
-                <option value="capstone">Capstone 2.0</option>
-                <option value="ojt">OJT (Tiger Global)</option>
-                <option value="fitness">Discipline</option>
-                <option value="home">Night Protocol</option>
-            </select>
+                <select id="categorySelect">
+                    <option value="morning">Morning Protocol</option>
+                    <option value="capstone">Capstone 2.0</option>
+                    <option value="ojt">OJT (Tiger Global)</option>
+                    <option value="fitness">Discipline</option>
+                    <option value="home">Night Protocol</option>
+                </select>
                 <button id="addBtn">EXECUTE</button>
             </div>
         </section>
 
         <!-- ACTIVE DATA GRID -->
-        <div class="goals-grid" id="goalsList">
-            <!-- Active tasks will load here -->
+        <section class="schedule-dashboard" data-aos="fade-up">
+    <h3 class="section-label">// DAILY_BATTLE_STATIONS</h3>
+    
+    <div class="schedule-table">
+        <!-- MORNING SLOT (06:00 - 09:30) -->
+        <div class="time-slot" id="slot-morning">
+            <div class="time-info">06:00<br><span>MORNING</span></div>
+            <div class="task-bucket" id="tasks-morning"></div>
         </div>
 
-        <!-- BAGONG SECTION: ACCOMPLISHED OPERATIONS -->
+        <!-- CAPSTONE SLOT (08:00 - 10:30) -->
+        <div class="time-slot" id="slot-capstone">
+            <div class="time-info">08:00<br><span>CAPSTONE</span></div>
+            <div class="task-bucket" id="tasks-capstone"></div>
+        </div>
+
+        <!-- OJT SLOT (12:00 - 21:00) -->
+        <div class="time-slot" id="slot-ojt">
+            <div class="time-info">12:00<br><span>OJT_TGi</span></div>
+            <div class="task-bucket" id="tasks-ojt"></div>
+        </div>
+
+        <!-- DISCIPLINE SLOT -->
+        <div class="time-slot" id="slot-fitness">
+            <div class="time-info">CORE<br><span>GRIT</span></div>
+            <div class="task-bucket" id="tasks-fitness"></div>
+        </div>
+
+        <!-- NIGHT SLOT (21:00+) -->
+        <div class="time-slot" id="slot-home">
+            <div class="time-info">21:00<br><span>RECOVERY</span></div>
+            <div class="task-bucket" id="tasks-home"></div>
+        </div>
+    </div>
+</section>
+        <!-- ACCOMPLISHED SECTION -->
         <section class="history-section" style="margin-top: 60px;">
             <div class="section-header-row" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; margin-bottom: 20px;">
                 <h3 style="font-size: 0.9rem; color: var(--text-dim); letter-spacing: 2px;"><i class="fas fa-check-double"></i> Accomplished</h3>
                 <button id="clearAllBtn" class="btn-purge">PURGE HISTORY</button>
             </div>
             <div class="goals-grid" id="completedList">
-                <!-- Finished tasks will load here -->
+                <!-- Finished tasks -->
             </div>
         </section>
     </div>

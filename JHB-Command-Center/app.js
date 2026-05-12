@@ -1,4 +1,4 @@
-// 1. Firebase Config (PASTE YOUR ACTUAL CONFIG HERE)
+// 1. Firebase Config
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -8,27 +8,15 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-/* =========================================
-   NEW: OFFLINE PERSISTENCE ENGINE
-   - Pinapagana ang app kahit walang internet.
-   - I-se-save ang data sa browser cache.
-   ========================================= */
-db.enablePersistence()
-  .catch((err) => {
-      if (err.code == 'failed-precondition') {
-          // Multiple tabs open, persistence can only be enabled in one tab at a time.
-          console.warn('Persistence failed: Multiple tabs open.');
-      } else if (err.code == 'unimplemented') {
-          // The current browser doesn't support all of the features required to enable persistence
-          console.warn('Persistence is not available in this browser.');
-      }
-  });
+// OFFLINE PERSISTENCE
+db.enablePersistence().catch((err) => {
+    console.warn("Persistence error:", err.code);
+});
 
-// 2. Countdown Logic (Departure 10:30 AM)
+// 2. Countdown Logic (Daily 10:30 AM Departure)
 function startTimer() {
     setInterval(() => {
         const now = new Date();
@@ -44,7 +32,27 @@ function startTimer() {
     }, 1000);
 }
 
-// 3. Add Goal with Instant Clear Logic
+// 3. OJT Progress Core Logic
+function updateOJTProgress(renderedHours) {
+    const totalHours = 500;
+    const percentage = (renderedHours / totalHours) * 100;
+    document.getElementById('progress-fill').style.width = `${percentage}%`;
+    document.getElementById('progress-percent').innerText = `${Math.round(percentage)}%`;
+    document.getElementById('hour-count').innerText = `${renderedHours} / ${totalHours} HOURS RENDERED`;
+}
+
+// Sync with Firebase Stats
+async function syncProgress() {
+    const doc = await db.collection("ojt_stats").doc("current_progress").get();
+    if (doc.exists) {
+        updateOJTProgress(doc.data().hours);
+    } else {
+        await db.collection("ojt_stats").doc("current_progress").set({ hours: 0 });
+        updateOJTProgress(0);
+    }
+}
+
+// 4. Add Objective Logic
 const addBtn = document.getElementById('addBtn');
 const goalInput = document.getElementById('goalInput');
 
@@ -53,56 +61,50 @@ addBtn.addEventListener('click', async () => {
     const category = document.getElementById('categorySelect').value;
 
     if (objective) {
-        // INSTANT UI FEEDBACK:
-        // Burahin agad ang text sa screen para sa mabilis na feel
-        goalInput.value = ""; 
+        goalInput.value = ""; // Instant clear
         goalInput.focus(); 
-
         try {
-            // I-push sa Cloud (o sa local cache kung offline)
             await db.collection("battle_plan").add({
                 text: objective,
                 cat: category,
                 completed: false,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
-            console.log("System: Objective Deployed.");
-        } catch (error) {
-            console.error("Critical Error: ", error);
-            // Revert text kung may matinding error
-            goalInput.value = objective; 
-            alert("System Error: Failed to sync.");
+        } catch (e) {
+            goalInput.value = objective; // Revert on error
+            alert("Sync Failed!");
         }
-    } else {
-        alert("Please enter an objective first, Champ!");
     }
 });
 
-// 4. Read and Categorize (Real-time Snapshot)
+// 5. Real-time Rendering (Active & Completed)
 db.collection("battle_plan").orderBy("timestamp", "desc")
     .onSnapshot((snapshot) => {
-        const goalsList = document.getElementById('goalsList');
-        const completedList = document.getElementById('completedList');
+        // 1. Linisin lahat ng buckets bago mag-render
+        const buckets = {
+            morning: document.getElementById('tasks-morning'),
+            capstone: document.getElementById('tasks-capstone'),
+            ojt: document.getElementById('tasks-ojt'),
+            fitness: document.getElementById('tasks-fitness'),
+            home: document.getElementById('tasks-home')
+        };
         
-        goalsList.innerHTML = "";
-        completedList.innerHTML = "";
+        // Clear each bucket
+        Object.values(buckets).forEach(b => b.innerHTML = "");
+        document.getElementById('completedList').innerHTML = "";
 
         snapshot.forEach((doc) => {
             const data = doc.data();
-            const categoryClass = `cat-${data.cat}`;
             const isDone = data.completed;
-
+            
             const html = `
-                <div class="goal-item ${categoryClass} ${isDone ? 'done' : ''}">
+                <div class="goal-item ${isDone ? 'done' : ''}">
                     <div class="goal-info">
-                        <small>// ${data.cat.toUpperCase()}</small>
                         <p>${data.text}</p>
                     </div>
                     <div class="goal-actions">
-                        <button onclick="deleteObjective('${doc.id}')" class="btn-trash" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                        <button onclick="toggleGoal('${doc.id}', ${isDone})" class="action-btn">
+                        <button onclick="deleteObjective('${doc.id}')" class="btn-trash-mini"><i class="fas fa-trash-alt"></i></button>
+                        <button onclick="toggleGoal('${doc.id}', ${isDone})" class="action-btn-mini">
                             <i class="fas ${isDone ? 'fa-undo' : 'fa-check'}"></i>
                         </button>
                     </div>
@@ -110,48 +112,47 @@ db.collection("battle_plan").orderBy("timestamp", "desc")
             `;
 
             if (isDone) {
-                completedList.innerHTML += html;
+                document.getElementById('completedList').innerHTML += html;
             } else {
-                goalsList.innerHTML += html;
+                // ETO ANG MAGIC: I-shoot sa tamang bucket base sa data.cat
+                if (buckets[data.cat]) {
+                    buckets[data.cat].innerHTML += html;
+                }
             }
         });
     });
 
-// 5. Toggle Status (Done / Active)
-window.toggleGoal = async (id, currentStatus) => {
-    await db.collection("battle_plan").doc(id).update({
-        completed: !currentStatus
-    });
-};
+// 6. Global Functions (Delete/Toggle)
+window.toggleGoal = (id, status) => db.collection("battle_plan").doc(id).update({ completed: !status });
+window.deleteObjective = (id) => { if(confirm("Purge Objective?")) db.collection("battle_plan").doc(id).delete(); };
 
-// 6. Delete Specific Objective
-window.deleteObjective = async (id) => {
-    if (confirm("Remove this objective from the system?")) {
-        await db.collection("battle_plan").doc(id).delete();
+// 7. Clock Out / Add Hours
+const clockOutBtn = document.getElementById('clockOutBtn');
+clockOutBtn.addEventListener('click', async () => {
+    const now = new Date();
+    const startDate = new Date("2026-05-27");
+    if (now < startDate) return alert("System Locked: OJT starts on May 27.");
+
+    if (confirm("Log 8 hours for today's mission?")) {
+        const docRef = db.collection("ojt_stats").doc("current_progress");
+        const doc = await docRef.get();
+        const newHours = (doc.data().hours || 0) + 8;
+        await docRef.update({ hours: newHours });
+        updateOJTProgress(newHours);
     }
-};
+});
 
-// 7. PURGE HISTORY LOGIC
+// 8. Purge All Completed
 const clearBtn = document.getElementById('clearAllBtn');
-if (clearBtn) {
-    clearBtn.addEventListener('click', async () => {
-        if (confirm("System Alert: Purge all accomplished operations? This cannot be undone.")) {
-            try {
-                const snapshot = await db.collection("battle_plan").where("completed", "==", true).get();
-                if (snapshot.empty) return;
+clearBtn.addEventListener('click', async () => {
+    if (confirm("Purge Accomplished History?")) {
+        const snapshot = await db.collection("battle_plan").where("completed", "==", true).get();
+        const batch = db.batch();
+        snapshot.forEach(doc => batch.delete(doc.ref));
+        await batch.commit();
+    }
+});
 
-                const batch = db.batch();
-                snapshot.forEach((doc) => {
-                    batch.delete(doc.ref);
-                });
-
-                await batch.commit();
-                console.log("History Purged.");
-            } catch (error) {
-                console.error("Error purging history: ", error);
-            }
-        }
-    });
-}
-
+// INITIALIZE SYSTEM
 startTimer();
+syncProgress();

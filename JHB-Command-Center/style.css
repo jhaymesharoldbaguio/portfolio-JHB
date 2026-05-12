@@ -23,7 +23,20 @@ body { background-color: var(--bg); color: var(--text-main); font-family: 'Inter
 .timer-container p { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 2px; }
 
 /* CONTROL PANEL */
-.input-group { display: flex; flex-wrap: wrap; gap: 12px; background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.input-group { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    background: var(--card);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    
+    /* ETO ANG FIX: Sinisiguradong laging centered ang mga 
+       elements sa loob kapag nag-wrap sila sa bagong linya */
+    justify-content: center; 
+}
 input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px solid var(--glass-border); color: white; padding: 15px; border-radius: 12px; outline: none; }
 #addBtn { background: var(--neon); color: #000; border: none; padding: 0 30px; border-radius: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
 #addBtn:hover { background: #ffffff; transform: scale(1.05); }
@@ -74,8 +87,37 @@ input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px soli
 
 @media (max-width: 600px) {
     #countdown { font-size: 3.5rem; }
-    .input-group { padding: 15px; }
-    .goal-item { padding: 15px 20px; }
+    .dashboard { padding: 40px 15px; }
+    
+    /* Gawing vertical stack ang input para sa malinis na UI */
+    .input-group { 
+        padding: 15px; 
+        flex-direction: column; /* Pagpapatungin sila para hindi ipit */
+        align-items: stretch;    /* Papantayin ang gilid */
+    }
+
+    input, select {
+        width: 100%; /* Sakop ang buong lapad */
+        min-width: unset;
+    }
+
+    #addBtn { 
+        padding: 15px 0; /* Mas makapal para madaling i-tap */
+        width: 100%;     /* ETO ANG FIX: Centered and Full Width */
+        margin-top: 5px;
+    }
+
+    .goal-item { 
+        padding: 15px 20px; 
+        flex-direction: column; /* Kahit yung tasks, pagpapatungin sa mobile */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .goal-actions {
+        width: 100%;
+        justify-content: flex-end; /* Buttons ng task sa kanan pa rin */
+    }
 }
 
 /* =========================================
@@ -160,3 +202,137 @@ input, select { flex: 1; min-width: 150px; background: #05080a; border: 1px soli
 
 /* Home - Silver (Logistics) */
 .cat-home { border-left: 5px solid #a0aec0 !important; }
+
+/* =========================================
+   OJT PROGRESS BAR STYLES
+   ========================================= */
+.progress-wrapper {
+    max-width: 400px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--neon);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #05080a;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%; /* Ito ang babaguhin ng JS */
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon), #ffffff);
+    box-shadow: 0 0 10px var(--neon);
+    transition: width 1s ease-in-out;
+}
+
+#hour-count {
+    display: block;
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   ADVANCED SCHEDULE TABLE STYLES
+   ========================================= */
+.schedule-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    background: var(--card);
+    min-height: 100px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.time-info {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--neon);
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    border-right: 1px solid var(--glass-border);
+}
+
+.time-info span {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+.task-bucket {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Re-style ang goal-item para magkasya sa table */
+.goal-item {
+    background: rgba(255, 255, 255, 0.03) !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    border-left: 3px solid var(--neon) !important;
+}
+
+.goal-item p { font-size: 0.9rem !important; }
+
+/* Custom Scroll para sa bucket */
+.task-bucket {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Styles para sa maliliit na buttons sa loob ng table */
+.btn-trash-mini, .action-btn-mini {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.btn-trash-mini { color: #ff4d4d; opacity: 0.6; }
+.action-btn-mini { color: var(--neon); }
+
+.btn-trash-mini:hover, .action-btn-mini:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* Para hindi mag-overlap ang text at buttons sa loob ng slot */
+.goal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
