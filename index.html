@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baguio Jhaymes Harold | Portfolio</title>
+    
+    <!-- SEO META TAGS -->
+    <meta name="description" content="Jhaymes Harold Baguio - BSIT Student & IT Intern crafting high-performance web systems on Android.">
+    <meta property="og:title" content="Jhaymes Harold | Portfolio">
+    <meta property="og:description" content="BSIT Student & IT Intern building high-performance systems on Android.">
+    <meta property="og:image" content="profile.png">
+    
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
     <!-- ICONS & ANIMATION -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,262 +23,395 @@
     <link rel="icon" type="image/png" href="profile.png">
 </head>
 <body>
-    <div class="glow-bg"></div>
+
+    <!-- NOISE TEXTURE OVERLAY -->
+    <div class="noise"></div>
+
+    <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-left"><div class="logo">JH<span>B</span></div></div>
+            <div class="logo">JH<span>B</span></div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#projects">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <!-- HAMBURGER -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <div class="main-container">
-        <!-- HERO SECTION -->
-        <header class="hero-section">
-            <div data-aos="zoom-out" data-aos-duration="1200">
-                <div class="status-container">
-                    <span class="status-tag"><span class="status-dot"></span> Available for OJT 2027</span>
-                </div>
-                <h1 class="hero-headline" id="typewriter"></h1>
-                <p class="hero-subtext">Full-Stack Developer & Mobile Workflow Specialist. Building high-performance systems purely on Android.</p>
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero">
+        <div class="hero-inner">
+
+            <div class="hero-top" data-aos="fade-up" data-aos-duration="1000">
+                <span class="status-tag">
+                    <span class="status-dot"></span>
+                    IT Intern @ TGI Tiger Global Inc.
+                </span>
+            </div>
+
+            <div class="hero-name" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                <h1>JHAYMES<br>HAROLD<br>BAGUIO</h1>
+            </div>
+
+            <div class="hero-divider" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
+
+            <div class="hero-bottom" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <p class="hero-sub">BSIT Student. IT Intern.<br>Building on Android.</p>
                 <div class="hero-btns">
-                    <a href="CV_Baguio_Jhaymes.pdf" download class="btn"><i class="fas fa-file-download"></i> Download CV</a>
-                    <a href="#projects" class="btn-secondary">View My Projects</a>
+                    <a href="CV_Baguio_Jhaymes.pdf" download class="btn">
+                        <i class="fas fa-file-download"></i> Download CV
+                    </a>
+                    <a href="#projects" class="btn-secondary">View Work</a>
                 </div>
             </div>
-        </header>
 
-        <!-- ABOUT ME SECTION -->
-        <section id="about">
-            <h2 data-aos="fade-up" class="centered-title">About Me</h2>
+        </div>
+
+        <!-- SCROLL INDICATOR -->
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+
+            <div class="about-header" data-aos="fade-up">
+                <span class="section-label">About</span>
+                <h2 class="section-title">THE<br>STRATEGIST</h2>
+            </div>
+
             <div class="about-grid">
-                <div class="about-main-image" data-aos="fade-right">
-                    <img src="profile.png" alt="Baguio Jhaymes Harold">
-                    <div class="image-overlay"></div>
+                <!-- IMAGE PLACEHOLDER -->
+                <div class="about-image-wrap" data-aos="fade-right" data-aos-delay="100">
+                    <div class="image-placeholder">
+                        <span>PHOTO<br>COMING<br>SOON</span>
+                    </div>
                 </div>
-                <div class="about-description" data-aos="fade-left">
-                    <div class="mini-intro"><span><i class="fas fa-chess-knight"></i> THE STRATEGIST</span></div>
-<p>
-    I am <strong>Jhaymes Harold Baguio</strong>, a graduating <strong>BSIT Student</strong> at SPCBA. 
-    My development journey is defined by extreme technical resourcefulness—engineering robust 
-    full-stack systems and AI-integrated applications entirely within a mobile environment 
-    using <strong>Termux</strong> and <strong>Acode IDE</strong>. 
-</p>
-<p>
-    I am committed to proving that high-level software engineering isn't limited by hardware, 
-    but driven by logic, discipline, and grit.
-</p>
-                    <div class="about-values">
+
+                <!-- ABOUT CONTENT -->
+                <div class="about-content" data-aos="fade-left" data-aos-delay="200">
+                    <p class="about-text">
+                        I am <strong>Jhaymes Harold Baguio</strong>, a graduating 
+                        <strong>BSIT Student</strong> at SPCBA. My development journey 
+                        is defined by extreme technical resourcefulness — engineering 
+                        robust full-stack systems and AI-integrated applications entirely 
+                        within a mobile environment using <strong>Termux</strong> and 
+                        <strong>Acode IDE</strong>.
+                    </p>
+                    <p class="about-text">
+                        I am committed to proving that high-level software engineering 
+                        isn't limited by hardware, but driven by logic, discipline, and grit.
+                    </p>
+
+                    <!-- VALUE TAGS -->
+                    <div class="about-tags">
                         <span class="value-tag"><i class="fas fa-microchip"></i> Resourceful</span>
                         <span class="value-tag"><i class="fas fa-terminal"></i> Logic-Driven</span>
                     </div>
-                </div>
-                <div class="about-bottom-layout">
-                    <div class="education-timeline" data-aos="fade-up">
-                        <h3><i class="fas fa-user-graduate"></i> Academic Journey</h3>
-                        <div class="timeline">
-                            <div class="timeline-item current"><div class="timeline-dot"></div><div class="timeline-content"><h4>BSIT</h4><p>SPCBA (2022 - Present)</p></div></div>
-                            <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>Secondary</h4><p>Liceo De San Pedro</p></div></div>
+
+                    <!-- QUICK INFO -->
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span class="info-label">Degree</span>
+                            <span class="info-value">BSIT — SPCBA</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">San Pedro, Laguna</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Status</span>
+                            <span class="info-value">IT Intern @ TGI</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Outside Code</span>
+                            <span class="info-value">Amateur Boxer — 3-1, 1 Belt</span>
                         </div>
                     </div>
-                    <div class="beyond-code" data-aos="fade-up">
-                        <h3><i class="fas fa-fist-raised"></i> Beyond the Code</h3>
-                        <div class="hobby-card">
-                            <i class="fas fa-medal" style="color: var(--primary); font-size: 1.5rem; margin-top: 5px;"></i>
-                            <div class="hobby-info"><h4>Amateur Boxer</h4><p>3-1 record with 1 Title Belt. Applying ring discipline to code.</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-info-grid" data-aos="fade-up">
-                    <div class="info-box"><i class="fas fa-graduation-cap"></i><span>Degree</span><p>BSIT Student</p></div>
-                    <div class="info-box"><i class="fas fa-map-marker-alt"></i><span>Location</span><p>San Pedro, Laguna</p></div>
-                    <div class="info-box"><i class="fas fa-briefcase"></i><span>Status</span><p>Available for OJT</p></div>
                 </div>
             </div>
-        </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills" data-aos="fade-up">
-            <h2 class="centered-title">Technical Stack</h2>
-            <div class="skills-wrapper">
-                <div class="skill-category">
-                    <div class="category-title"><i class="fas fa-code"></i> Frontend</div>
-                    <div class="skills-icons">
+            <!-- SKILLS ROW -->
+            <div class="skills-row" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-group">
+                    <span class="skill-group-label">Frontend</span>
+                    <div class="skill-items">
                         <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
                         <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-                        <div class="skill-item"><i class="fab fa-js"></i><span>JS</span></div>
+                        <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <div class="category-title"><i class="fas fa-server"></i> Backend</div>
-                    <div class="skills-icons">
+                <div class="skill-divider"></div>
+                <div class="skill-group">
+                    <span class="skill-group-label">Backend</span>
+                    <div class="skill-items">
                         <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
                         <div class="skill-item"><i class="fas fa-database"></i><span>Firebase</span></div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <div class="category-title"><i class="fas fa-terminal"></i> Workflow</div>
-                    <div class="skills-icons">
+                <div class="skill-divider"></div>
+                <div class="skill-group">
+                    <span class="skill-group-label">Workflow</span>
+                    <div class="skill-items">
                         <div class="skill-item"><i class="fas fa-terminal"></i><span>Termux</span></div>
                         <div class="skill-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- PROJECTS SECTION -->
-       
-<section id="projects">
-    <h2 data-aos="fade-up" class="centered-title">Project Archive</h2>
-    
-    <div class="filter-container" data-aos="fade-up">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="games">Games</button>
-    </div>
-
-    <div class="bento-grid">
-        
-        <!-- 1. AGELESS CARE -->
-        <div class="bento-item project-card" data-category="mobile" data-aos="fade-up">
-            <div class="bento-tag">Primary Capstone</div>
-            <div class="bento-content">
-                <h3>AGELESS CARE 2.0 <span class="ongoing-tag">ONGOING</span></h3>
-                <p>Native Android healthcare platform for Seniors.</p>
-                <button class="btn-small">Details</button>
-            </div>
-            <img src="agelesscarelogo.png" class="bento-bg">
         </div>
+    </section>
 
-        <!-- 2. INTELLIFIT -->
-        <div class="bento-item project-card" data-category="web" data-aos="fade-up">
-            <div class="bento-tag">AI Project</div>
-            <div class="bento-content">
-                <h3>INTELLIFIT</h3>
-                <p>AI Workout Recommendation Engine.</p>
-                <button class="btn-small">Details</button>
+    <!-- ===================== PROJECTS SECTION ===================== -->
+    <section id="projects" class="projects-section">
+        <div class="section-container">
+
+            <div class="projects-header" data-aos="fade-up">
+                <span class="section-label">Work</span>
+                <h2 class="section-title">SELECTED<br>PROJECTS</h2>
             </div>
-            <img src="intellifit-main.jpg" class="bento-bg">
-        </div>
 
-        <!-- 3. AG BOXING GYM -->
-        <div class="bento-item project-card" data-category="web" data-aos="fade-up">
-            <div class="bento-tag">Inventory</div>
-            <div class="bento-content">
-                <h3>AG BOXING GYM</h3>
-                <p>Real-time Firebase management system.</p>
-                <button class="btn-small">Details</button>
+            <!-- FILTER -->
+            <div class="filter-container" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="games">Games</button>
             </div>
-            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600" class="bento-bg">
-        </div>
 
-        <!-- 4. LONGBU -->
-        <div class="bento-item project-card" data-category="games" data-aos="fade-up">
-            <div class="bento-tag">Game Dev</div>
-            <div class="bento-content">
-                <h3>LONGBU</h3>
-                <p>3D Horror Unity Experience.</p>
-                <button class="btn-small">Details</button>
-            </div>
-            <img src="longbu.jpg" class="bento-bg">
-        </div>
+            <!-- EDITORIAL PROJECT CARDS -->
+            <div class="projects-list">
 
-        <!-- 5. KAFFEIVIN (BINALIK NA NATIN) -->
-        <div class="bento-item project-card" data-category="web" data-aos="fade-up">
-            <div class="bento-tag">Web System</div>
-            <div class="bento-content">
-                <h3>KAFFEIVIN</h3>
-                <p>PHP / MySQL Coffee Shop Management.</p>
-                <button class="btn-small">Details</button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" class="bento-bg">
-        </div>
-
-        <!-- 6. PET CARE (BINALIK NA NATIN) -->
-        <div class="bento-item project-card" data-category="web" data-aos="fade-up">
-            <div class="bento-tag">Web Design</div>
-            <div class="bento-content">
-                <h3>PET CARE</h3>
-                <p>Responsive E-commerce UI Design.</p>
-                <button class="btn-small">Details</button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600" class="bento-bg">
-        </div>
-
-        <!-- 7. SMART TO-DO (BINALIK NA NATIN) -->
-        <div class="bento-item project-card" data-category="web" data-aos="fade-up">
-            <div class="bento-tag">JS App</div>
-            <div class="bento-content">
-                <h3>SMART TO-DO</h3>
-                <p>Productivity app with LocalStorage.</p>
-                <button class="btn-small">Details</button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600" class="bento-bg">
-        </div>
-        
-        <!-- Project 8: JHB Command Center -->
-<div class="bento-item project-card" data-category="web" data-aos="fade-up">
-    <div class="bento-tag">System Tool</div>
-    <div class="bento-content">
-        <h3>COMMAND CENTER</h3>
-        <p>Real-time OJT Tracker & Daily Battle Planner.</p>
-        <button class="btn-small">Details</button>
-    </div>
-    <!-- Gagamit muna tayo ng tech placeholder image, palitan mo na lang ng screenshot mo mamaya -->
-    <img src="https://images.unsplash.com/photo-1510511459019-5dee667ff58b?w=600" class="bento-bg">
-</div>
-
-    </div>
-</section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" data-aos="fade-up">
-            <h2 class="centered-title">Get In Touch</h2>
-            <div class="contact-wrapper">
-                <form action="https://formspree.io/f/maqaplaa" method="POST" class="contact-form">
-                    <div class="input-group-row">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email Address" required>
+                <div class="project-card" data-category="mobile" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">01</span>
+                            <div class="project-info">
+                                <span class="project-tag">Primary Capstone</span>
+                                <h3 class="project-name">AGELESS CARE 2.0</h3>
+                                <p class="project-desc">Native Android healthcare platform for Senior Citizens.</p>
+                                <span class="ongoing-tag">ONGOING</span>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="agelesscarelogo.png" alt="Ageless Care 2.0" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
                     </div>
-                    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                    <button type="submit" class="btn-submit">SEND MESSAGE <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </section>
-    </div>
+                </div>
 
-    <!-- MODAL OVERLAY -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content"><span class="close-button">&times;</span><h2 id="modalTitle">Title</h2><div class="modal-body"></div></div>
-    </div>
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">02</span>
+                            <div class="project-info">
+                                <span class="project-tag">AI Project</span>
+                                <h3 class="project-name">INTELLIFIT</h3>
+                                <p class="project-desc">AI Workout Recommendation Engine for varsity players.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="intellifit-main.jpg" alt="IntelliFit" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">03</span>
+                            <div class="project-info">
+                                <span class="project-tag">Inventory System</span>
+                                <h3 class="project-name">AG BOXING GYM</h3>
+                                <p class="project-desc">Real-time Firebase inventory management system.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600" alt="AG Boxing Gym" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="games" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">04</span>
+                            <div class="project-info">
+                                <span class="project-tag">Game Dev</span>
+                                <h3 class="project-name">LONGBU</h3>
+                                <p class="project-desc">3D Horror Unity Experience with optimized lighting.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="longbu.jpg" alt="Longbu" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">05</span>
+                            <div class="project-info">
+                                <span class="project-tag">Web System</span>
+                                <h3 class="project-name">KAFFEIVIN</h3>
+                                <p class="project-desc">PHP / MySQL Coffee Shop Management System.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="Kaffeivin" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">06</span>
+                            <div class="project-info">
+                                <span class="project-tag">Web Design</span>
+                                <h3 class="project-name">PET CARE</h3>
+                                <p class="project-desc">Responsive E-commerce UI Design.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600" alt="Pet Care" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">07</span>
+                            <div class="project-info">
+                                <span class="project-tag">JS App</span>
+                                <h3 class="project-name">SMART TO-DO</h3>
+                                <p class="project-desc">Productivity app with LocalStorage persistence.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600" alt="Smart To-Do" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">08</span>
+                            <div class="project-info">
+                                <span class="project-tag">System Tool</span>
+                                <h3 class="project-name">COMMAND CENTER</h3>
+                                <p class="project-desc">Real-time OJT Tracker & Daily Battle Planner.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1510511459019-5dee667ff58b?w=600" alt="Command Center" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+
+            <div class="contact-header" data-aos="fade-up">
+                <span class="section-label">Contact</span>
+                <h2 class="section-title">GET IN<br>TOUCH</h2>
+            </div>
+
+            <div class="contact-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-left">
+                    <p class="contact-text">
+                        Have a project in mind? Let's build something great together.
+                    </p>
+                    <div class="contact-links">
+                        <a href="https://www.facebook.com/share/1BF6a258YF/" target="_blank" class="contact-link fb-link">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://github.com/jhaymesharoldbaguio" target="_blank" class="contact-link gh-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form action="https://formspree.io/f/maqaplaa" method="POST" class="contact-form">
+                        <div class="input-group-row">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn-submit">
+                            SEND MESSAGE <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-logo">JH<span>B</span></div>
-        <p>Built with technical grit on Android environment.</p>
-        
-        <div class="social-links">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/share/1BF6a258YF/" target="_blank" class="fb-link">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <!-- GitHub -->
-            <a href="https://github.com/jhaymesharoldbaguio" target="_blank" class="gh-link">
-                <i class="fab fa-github"></i>
-            </a>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">JH<span>B</span></div>
+            <p class="footer-text">Built with technical grit on Android environment.</p>
+            <p class="footer-copy">© 2026 Baguio Jhaymes Harold — All Rights Reserved</p>
         </div>
-        
-        <div class="footer-bottom">
-            <p>© 2026 Baguio Jhaymes Harold | All Rights Reserved</p>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalTitle">Title</h2>
+            <div class="modal-body"></div>
         </div>
     </div>
-</footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
