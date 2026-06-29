@@ -118,10 +118,20 @@ const projectData = {
 };
 
 /* ============================================================
-   4. MODAL LOGIC
+   4. MODAL LOGIC — PREMIUM SIDE BY SIDE
    ============================================================ */
 const modal = document.getElementById("projectModal");
 const closeBtn = document.querySelector(".close-button");
+
+// Update HTML structure ng modal
+const modalElement = document.getElementById("projectModal");
+modalElement.innerHTML = `
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="modal-left" id="modalLeft"></div>
+        <div class="modal-right" id="modalRight"></div>
+    </div>
+`;
 
 document.addEventListener('click', function(e) {
     const clickedBtn = e.target.closest('.btn-small');
@@ -130,110 +140,158 @@ document.addEventListener('click', function(e) {
     const projectCard = clickedBtn.closest('.project-card');
     if (!projectCard) return;
 
-    let title = projectCard.querySelector('.project-name').innerText.toUpperCase().trim();
+    const title = projectCard
+        .querySelector('.project-name')
+        .innerText.toUpperCase().trim();
 
-    if (projectData[title]) {
-        const data = projectData[title];
-        document.getElementById("modalTitle").innerText = title;
-        const modalBody = document.querySelector(".modal-body");
+    const projectTag = projectCard
+        .querySelector('.project-tag')
+        .innerText;
 
-        if (data.isCaseStudy) {
-            let imagesHTML = "";
-            data.mockupImages.forEach(imgSrc => {
-                imagesHTML += `
-                    <div class="modal-mockup">
-                        <img src="${imgSrc}" class="mockup-img" alt="${title}">
-                    </div>`;
+    if (!projectData[title]) return;
+
+    const data = projectData[title];
+    const modalLeft = document.getElementById("modalLeft");
+    const modalRight = document.getElementById("modalRight");
+
+    /* ---- LEFT SIDE: IMAGES ---- */
+    if (data.mockupImages && data.mockupImages.length > 0) {
+        let thumbsHTML = data.mockupImages.map((src, i) => `
+            <div class="modal-thumb ${i === 0 ? 'active' : ''}" 
+                 data-index="${i}">
+                <img src="${src}" alt="Mockup ${i + 1}">
+            </div>
+        `).join('');
+
+        modalLeft.innerHTML = `
+            <img 
+                src="${data.mockupImages[0]}" 
+                class="modal-main-image" 
+                id="modalMainImg"
+                alt="${title}"
+            >
+            ${data.mockupImages.length > 1 ? `
+            <div class="modal-thumbnails">
+                ${thumbsHTML}
+            </div>` : ''}
+        `;
+
+        // Thumbnail click logic
+        modalLeft.querySelectorAll('.modal-thumb').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const idx = parseInt(thumb.getAttribute('data-index'));
+                document.getElementById('modalMainImg').src = data.mockupImages[idx];
+                modalLeft.querySelectorAll('.modal-thumb')
+                    .forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
             });
+        });
 
-            modalBody.innerHTML = `
-                <p class="case-tagline">"${data.tagline}"</p>
-                <div class="mockup-gallery">${imagesHTML}</div>
-                <div class="case-section">
+    } else {
+        modalLeft.innerHTML = `
+            <div class="modal-no-image">
+                <span>NO<br>PREVIEW<br>AVAILABLE</span>
+            </div>
+        `;
+    }
+
+    /* ---- RIGHT SIDE: DETAILS ---- */
+    if (data.isCaseStudy) {
+        // Case study layout
+        let challengeHTML = data.challenge ? `
+            <div class="modal-case-item">
+                <h4>Engineering Challenge</h4>
+                <p>${data.challenge}</p>
+            </div>
+        ` : '';
+
+        let actionBtn = '';
+        if (title === "SMART TO-DO") {
+            actionBtn = `<a href="SmartToDo/index.html" class="modal-action-btn">Try the App →</a>`;
+        } else if (title === "LONGBU") {
+            actionBtn = `<a href="https://setty-69.itch.io/longboo" target="_blank" class="modal-action-btn">Play on Itch.io →</a>`;
+        } else if (title === "AG BOXING GYM") {
+            actionBtn = `<a href="AG-Boxing-Gym/index.html" class="modal-action-btn">Open Gym App →</a>`;
+        } else if (title === "COMMAND CENTER") {
+            actionBtn = `<a href="JHB-Command-Center/index.html" class="modal-action-btn">Execute Dashboard →</a>`;
+        }
+
+        let featuresHTML = data.features.map(f => 
+            `<li>${f}</li>`
+        ).join('');
+
+        modalRight.innerHTML = `
+            <div class="modal-header">
+                <span class="modal-tag">${projectTag}</span>
+                <h2 class="modal-title">${title}</h2>
+                <p class="modal-tagline">${data.tagline}</p>
+            </div>
+
+            <div class="modal-case-block">
+                <div class="modal-case-item">
                     <h4>The Problem</h4>
                     <p>${data.problem}</p>
                 </div>
-                <div class="case-section">
+                <div class="modal-case-item">
                     <h4>The Solution</h4>
                     <p>${data.solution}</p>
                 </div>
-                ${data.challenge ? `
-                <div class="case-section">
-                    <h4>Engineering Challenge</h4>
-                    <p>${data.challenge}</p>
-                </div>` : ''}
-                <h4 style="font-family:'Bebas Neue',sans-serif; 
-                    letter-spacing:2px; font-size:1.2rem; 
-                    margin-top:10px;">
-                    Key Features
-                </h4>
-                <ul id="modalFeatures"></ul>
-            `;
-        } else {
-            modalBody.innerHTML = `
-                <p style="color:var(--text-secondary); 
-                    margin-bottom:20px; line-height:1.8;">
-                    ${data.desc}
-                </p>
-                <h4 style="font-family:'Bebas Neue',sans-serif; 
-                    letter-spacing:2px; font-size:1.2rem;">
-                    Key Features
-                </h4>
-                <ul id="modalFeatures"></ul>
-            `;
-        }
+                ${challengeHTML}
+            </div>
 
-        const featuresList = document.getElementById("modalFeatures");
-        data.features.forEach(feat => {
-            let li = document.createElement("li");
-            li.innerText = feat;
-            featuresList.appendChild(li);
-        });
+            <div>
+                <p class="modal-features-title">Key Features</p>
+                <ul class="modal-features-list">
+                    ${featuresHTML}
+                </ul>
+            </div>
 
-        // Special Action Buttons
-        if (title === "SMART TO-DO") {
-            addModalButton(featuresList, "SmartToDo/index.html", 'Try the App');
-        }
-        if (title === "LONGBU") {
-            addModalButton(featuresList, "https://setty-69.itch.io/longboo", 'Play on Itch.io');
-        }
-        if (title === "AG BOXING GYM") {
-            addModalButton(featuresList, "AG-Boxing-Gym/index.html", 'Open Gym App');
-        }
-        if (title === "COMMAND CENTER") {
-            addModalButton(featuresList, "JHB-Command-Center/index.html", 'Execute Dashboard');
-        }
+            ${actionBtn}
+        `;
 
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
+    } else {
+        // Simple layout
+        let featuresHTML = data.features.map(f => 
+            `<li>${f}</li>`
+        ).join('');
+
+        modalRight.innerHTML = `
+            <div class="modal-header">
+                <span class="modal-tag">${projectTag}</span>
+                <h2 class="modal-title">${title}</h2>
+            </div>
+
+            <p class="modal-simple-desc">${data.desc}</p>
+
+            <div>
+                <p class="modal-features-title">Key Features</p>
+                <ul class="modal-features-list">
+                    ${featuresHTML}
+                </ul>
+            </div>
+        `;
     }
+
+    // Re-attach close button
+    document.querySelector('.close-button').onclick = closeModal;
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = "hidden";
 });
 
-function addModalButton(container, link, text) {
-    let btn = document.createElement("a");
-    btn.href = link;
-    if (link.startsWith('http')) btn.target = "_blank";
-    btn.innerText = text;
-    btn.className = "btn";
-    btn.style.cssText = `
-        display: block;
-        margin-top: 20px;
-        text-align: center;
-        text-decoration: none;
-    `;
-    container.appendChild(btn);
-}
-
-// Close Modal
+/* ---- CLOSE MODAL ---- */
 function closeModal() {
-    modal.style.display = "none";
+    modal.classList.remove('active');
     document.body.style.overflow = "";
 }
 
-if (closeBtn) closeBtn.onclick = closeModal;
-window.onclick = (e) => { if (e.target == modal) closeModal(); };
-document.addEventListener('keydown', (e) => { 
-    if (e.key === 'Escape') closeModal(); 
+window.onclick = (e) => { 
+    if (e.target === modal) closeModal(); 
+};
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
 });
 
 /* ============================================================
