@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Archive | Jhaymes Harold Baguio</title>
+
+    <meta name="description" content="Full project archive of Jhaymes Harold Baguio — BSIT Student & IT Intern.">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- ICONS & ANIMATION -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="profile.png">
+</head>
+<body>
+
+    <div class="noise"></div>
+
+    <!-- NAV — SAME AS INDEX -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JH<span>B</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html" class="nav-active">Work</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html#about">About</a>
+            <a href="projects.html">Work</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="page-header-inner">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+            <div class="page-header-text" data-aos="fade-up">
+                <span class="section-label">Archive</span>
+                <h1 class="section-title">ALL<br>PROJECTS</h1>
+                <p class="page-header-sub">
+                    8 Projects — Web, Mobile & Games
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALL PROJECTS -->
+    <div class="archive-container">
+        <div class="section-container">
+
+            <!-- FILTER -->
+            <div class="filter-container" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="games">Games</button>
+            </div>
+
+            <!-- ALL PROJECTS LIST -->
+            <div class="projects-list">
+
+                <div class="project-card" data-category="mobile" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">01</span>
+                            <div class="project-info">
+                                <span class="project-tag">Primary Capstone</span>
+                                <h3 class="project-name">AGELESS CARE</h3>
+                                <p class="project-desc">Native Android healthcare platform for Senior Citizens.</p>
+                                <span class="ongoing-tag">ONGOING</span>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="agelesscarelogo.png" alt="Ageless Care" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">02</span>
+                            <div class="project-info">
+                                <span class="project-tag">AI Project</span>
+                                <h3 class="project-name">INTELLIFIT</h3>
+                                <p class="project-desc">AI Workout Recommendation Engine for varsity players.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="intellifit-main.jpg" alt="IntelliFit" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">03</span>
+                            <div class="project-info">
+                                <span class="project-tag">Inventory System</span>
+                                <h3 class="project-name">AG BOXING GYM</h3>
+                                <p class="project-desc">Real-time Firebase inventory management system.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600" 
+                                     alt="AG Boxing Gym" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="games" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">04</span>
+                            <div class="project-info">
+                                <span class="project-tag">Game Dev</span>
+                                <h3 class="project-name">LONGBU</h3>
+                                <p class="project-desc">3D Horror Unity Experience with optimized lighting.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="longbu.jpg" alt="Longbu" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">05</span>
+                            <div class="project-info">
+                                <span class="project-tag">Web System</span>
+                                <h3 class="project-name">KAFFEIVIN</h3>
+                                <p class="project-desc">PHP / MySQL Coffee Shop Management System.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" 
+                                     alt="Kaffeivin" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">06</span>
+                            <div class="project-info">
+                                <span class="project-tag">Web Design</span>
+                                <h3 class="project-name">PET CARE</h3>
+                                <p class="project-desc">Responsive E-commerce UI Design.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600" 
+                                     alt="Pet Care" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">07</span>
+                            <div class="project-info">
+                                <span class="project-tag">JS App</span>
+                                <h3 class="project-name">SMART TO-DO</h3>
+                                <p class="project-desc">Productivity app with LocalStorage persistence.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600" 
+                                     alt="Smart To-Do" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web" data-aos="fade-up">
+                    <div class="project-card-inner">
+                        <div class="project-left">
+                            <span class="project-number">08</span>
+                            <div class="project-info">
+                                <span class="project-tag">System Tool</span>
+                                <h3 class="project-name">COMMAND CENTER</h3>
+                                <p class="project-desc">Real-time OJT Tracker & Daily Battle Planner.</p>
+                            </div>
+                        </div>
+                        <div class="project-right">
+                            <div class="project-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1510511459019-5dee667ff58b?w=600" 
+                                     alt="Command Center" class="project-img">
+                            </div>
+                            <button class="btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER — SAME AS INDEX -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">JH<span>B</span></div>
+            <p class="footer-text">Built with technical grit on Android environment.</p>
+            <p class="footer-copy">© 2026 Baguio Jhaymes Harold — All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- MODAL — SAME AS INDEX -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-left" id="modalLeft"></div>
+            <div class="modal-right" id="modalRight"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

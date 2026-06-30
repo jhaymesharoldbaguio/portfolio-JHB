@@ -353,3 +353,79 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+/* ============================================================
+   8. CAROUSEL — INTERN SPOTLIGHT
+   ============================================================ */
+(function() {
+    const slides = document.querySelectorAll('.center-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    /* ---- GO TO SLIDE ---- */
+    function goToSlide(index) {
+        // Remove active sa lahat
+        slides.forEach(s => {
+            s.classList.remove('active');
+        });
+        dots.forEach(d => {
+            d.classList.remove('active');
+        });
+
+        // Normalize index
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        // Set active
+        slides[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+
+        currentIndex = index;
+    }
+
+    /* ---- AUTO PLAY — 3 seconds ---- */
+    function startAuto() {
+        autoTimer = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 3000);
+    }
+
+    function resetAuto() {
+        clearInterval(autoTimer);
+        startAuto();
+    }
+
+    /* ---- CONTROLS ---- */
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            resetAuto();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            resetAuto();
+        });
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            goToSlide(i);
+            resetAuto();
+        });
+    });
+
+    /* ---- INIT ---- */
+    goToSlide(0);
+    startAuto();
+
+})();
